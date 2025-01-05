@@ -1,0 +1,181 @@
+@import url("https://fonts.cdnfonts.com/css/ica-rubrik-black");
+@import url("https://fonts.cdnfonts.com/css/poppins");
+
+body {
+  background-color: #000000; /* Darkest background for the entire page */
+  color: #e0e0e0; /* Light text color for better contrast */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden; /* Prevent scrolling */
+}
+
+.banner {
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  text-align: center; /* Center the content */
+  position: relative;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.banner .slider {
+  position: absolute;
+  width: 200px;
+  height: 250px;
+  top: 10%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 2;
+}
+
+@keyframes autoRun {
+  from {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-16deg) rotateY(360deg);
+  }
+}
+
+.banner .slider .item {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(550px);
+}
+
+.banner .slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid transparent;
+  filter: grayscale(50%) contrast(130%);
+}
+
+.banner .content {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: max-content;
+  padding-bottom: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.banner .content h1 {
+  font-family: "ICA Rubrik", sans-serif;
+  font-size: 12em;
+  text-align: center;
+  line-height: 1em;
+  color: #fff;
+  position: relative;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.banner .content h1::after {
+  position: absolute;
+  inset: 0;
+  content: attr(data-content);
+  z-index: 2;
+  -webkit-text-stroke: 2px #333;
+  color: transparent;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+}
+
+.banner .content .author {
+  font-family: "Poppins", sans-serif;
+  text-align: right;
+  max-width: 200px;
+  color: #e0e0e0;
+  font-size: 1.5em;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+.banner .content h2 {
+  font-size: 3em;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.banner .content .model {
+  background-image: url(images/model.png);
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-size: auto 130%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 1;
+  opacity: 0.8;
+  filter: blur(3px) contrast(150%) brightness(80%);
+}
+
+/* Manga-style ink splatter effect */
+.banner .content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: url('images/ink_splatter.png') no-repeat center center;
+  background-size: contain;
+  z-index: 3;
+  opacity: 0;
+  animation: inkSplash 2s ease-out forwards;
+  animation-delay: 3s; /* Delay the effect for 3 seconds */
+}
+
+@keyframes inkSplash {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.5) rotate(30deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0) rotate(360deg);
+  }
+}
+
+/* Optional: Manga Brush Stroke Effect */
+.banner .content .mangaBrush {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: url('images/manga_brushstroke.png') no-repeat center center;
+  background-size: cover;
+  z-index: 4;
+  opacity: 0;
+  animation: brushStroke 3s ease-out forwards;
+  animation-delay: 5s; /* Start the brushstroke effect after 5 seconds */
+}
+
+@keyframes brushStroke {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.5) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+  }
+}
